@@ -6,6 +6,7 @@
 <div id="main">
   <div id="navigation">
     <?php echo navigation($current_subject, $current_page); ?>
+    <br/> <a href="new_subject.php">Add a subject</a>
   </div>
   <div id="page">
   		<h2> Create Subject </h2>
@@ -29,7 +30,7 @@
             &nbsp;
             <input type="radio" name="visible" value="0"/> Yes
         </p>
-        <input type="submit" value="Create Subject"/ />
+        <input type="submit" name="submit" value="Create Subject"/ />
       </form>
       <br/>
       <a href="manage_content.php">Cancel</a>
