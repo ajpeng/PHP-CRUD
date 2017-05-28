@@ -1,5 +1,6 @@
 <?php require_once("../includes/db_connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
+<?php require_once("../includes/session.php"); ?>
 <?php include("../includes/layouts/header.php"); ?>
 <?php find_selected_page(); ?>
 
@@ -9,6 +10,7 @@
     <br/> <a href="new_subject.php">Add a subject</a>
   </div>
   <div id="page">
+  <?php echo message();?>
   		<h2> Create Subject </h2>
   		<form action ="create_subject.php" method="post">
         <p> Menu name:
@@ -28,7 +30,7 @@
         <p>Visible:
             <input type="radio" name="visible" value="0"/> No
             &nbsp;
-            <input type="radio" name="visible" value="0"/> Yes
+            <input type="radio" name="visible" value="1"/> Yes
         </p>
         <input type="submit" name="submit" value="Create Subject"/ />
       </form>
