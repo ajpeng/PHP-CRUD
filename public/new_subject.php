@@ -5,17 +5,23 @@
 
 <div id="main">
   <div id="navigation">
-		<?php echo navigation($current_subject, $current_page); ?>
+    <?php echo navigation($current_subject, $current_page); ?>
   </div>
   <div id="page">
   		<h2> Create Subject </h2>
   		<form action ="create_subject.php" method="post">
-        <p> Subject name:
+        <p> Menu name:
+          <input type="text" name="menu_name" value="" />
         </p>
-        <input type="text" name="menu_name" value="" />
         <p>Position:
           <select name="position">
-            <option value="1">1</option>
+            <?php
+    					$subject_set = find_all_subjects();
+    					$subject_count = mysqli_num_rows($subject_set);
+    					for($count=1; $count <= ($subject_count + 1); $count++) {
+    						echo "<option value=\"{$count}\">{$count}</option>";
+    					}
+    				?>
           </select>
         </p>
         <p>Visible:
@@ -31,6 +37,3 @@
 </div>
 
 <?php include("../includes/layouts/footer.php"); ?>
-
-
-( ! ) Notice: Undefined variable: current_page in C:\wamp64\www\maplestory\public\new_subject.php on line 8
