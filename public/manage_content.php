@@ -11,7 +11,7 @@
 
   <div id="navigation">
 		<?php echo navigation($current_subject, $current_page); ?>
-		<br/> <a href="new_subject.php">Add a subject</a>
+		<br/> <a href="new_subject.php">Add a subject</a> <br/>
   </div>
   <div id="page">
 		<?php echo message(); ?>
@@ -19,6 +19,8 @@
 	    <h2>Manage Subject</h2>
 			<?php ?>
 			Menu name: <?php echo $current_subject["menu_name"]; ?><br />
+			<a href="edit_subject.php?subject=<?php echo $current_subject["id"]; ?> ">Edit Subject</a>
+
 
 		<?php } elseif ($current_page) { ?>
 			<h2>Manage Page</h2>
