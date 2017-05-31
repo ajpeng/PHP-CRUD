@@ -7,6 +7,7 @@
 	find_selected_page();
 ?>
 
+  <?php $layout_context = "public"; ?>
 <div id="main">
 
   <div id="navigation">
@@ -27,9 +28,15 @@
 		<?php } elseif ($current_page) { ?>
 			<h2>Manage Page</h2>
 			<?php ?>
-			Menu name: <?php echo $current_page["menu_name"]; ?><br />
+			Menu name: <?php echo htmlentities($current_page["menu_name"]); ?><br />
 			Position: <?php echo $current_page["position"]; ?> </br>
 			Visible: <?php echo $current_page["visible"] == 1 ? "yes" : "no "; ?> </br>
+			Content:<br />
+			<div class="view-content">
+				<?php echo htmlentities($current_page["content"]); ?>
+			</div>
+			<br />
+			  <a href="edit_page.php?page=<?php echo urlencode($current_page['id']); ?>">Edit page</a>
 		<?php } else { ?>
 			Please select a subject or a page.
 		<?php }?>
