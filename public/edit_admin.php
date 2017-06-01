@@ -5,9 +5,9 @@
 
 <?php
   $admin = find_admin_by_id($_GET["id"]);
-  
+
   if (!$admin) {
-    // admin ID was missing or invalid or 
+    // admin ID was missing or invalid or
     // admin couldn't be found in database
     redirect_to("manage_admins.php");
   }
@@ -16,22 +16,22 @@
 <?php
 if (isset($_POST['submit'])) {
   // Process the form
-  
+
   // validations
   $required_fields = array("username", "password");
   validate_presences($required_fields);
-  
+
   $fields_with_max_lengths = array("username" => 30);
   validate_max_lengths($fields_with_max_lengths);
-  
+
   if (empty($errors)) {
-    
+
     // Perform Update
 
     $id = $admin["id"];
     $username = mysql_prep($_POST["username"]);
-    $hashed_password = mysql_prep($_POST["password"]);
-  
+    $hashed_password = password_encrypt($_POST["password"]);
+
     $query  = "UPDATE admins SET ";
     $query .= "username = '{$username}', ";
     $query .= "hashed_password = '{$hashed_password}' ";
@@ -47,11 +47,11 @@ if (isset($_POST['submit'])) {
       // Failure
       $_SESSION["message"] = "Admin update failed.";
     }
-  
+
   }
 } else {
   // This is probably a GET request
-  
+
 } // end: if (isset($_POST['submit']))
 
 ?>
@@ -66,7 +66,7 @@ if (isset($_POST['submit'])) {
   <div id="page">
     <?php echo message(); ?>
     <?php echo form_errors($errors); ?>
-    
+
     <h2>Edit Admin: <?php echo htmlentities($admin["username"]); ?></h2>
     <form action="edit_admin.php?id=<?php echo urlencode($admin["id"]); ?>" method="post">
       <p>Username:
